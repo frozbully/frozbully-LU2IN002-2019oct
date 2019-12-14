@@ -10,13 +10,14 @@ public abstract class Acc {
 		cpt++;
 		numero = cpt;
 	}
-	
-	//Methods
+	//Getters
 	public abstract double getPoids();
 	
 	public int getNumero() {
 		return numero;
 	}
+	
+	//Methods	
 	@Override
 	public String toString() {
 		return String.format("%s No %d %.2f", categorie, numero, this.getPoids());

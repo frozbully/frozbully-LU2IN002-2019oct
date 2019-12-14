@@ -11,16 +11,26 @@ public class Sac extends Acc {
 	}
 	
 	public Sac() {
-		super("sac");
-		tab = new Acc[10];
-		cpt = 0;
+		this(10);
 	}
 	
-	//Methods
+	//Getters
+	@Override
+	public double getPoids() {
+		double res=0;
+		for (int i = 0; i < tab.length; i++) {
+			if (tab[i] != null) {
+				res += tab[i].getPoids();
+			}
+		}
+		return res;
+	}
+	
 	public int size() {
 		return tab.length;
 	}
 	
+	//Methods
 	public void ajouter(Acc a) {
 		for (int i = 0; i < tab.length; i++) {
 			if (tab[i] == null) {
@@ -41,18 +51,9 @@ public class Sac extends Acc {
 		cpt--;
 		return res;
 	}
+	
 	@Override
-	public double getPoids() {
-		double res=0;
-		for (int i = 0; i < tab.length; i++) {
-			if (tab[i] != null) {
-				res += tab[i].getPoids();
-			}
-		}
-		return res;
-	}
-	@Override
-	public String toString() { //TODO better toString using toString(int n) 
+	public String toString() {
 		String res = String.format("sac No %d %.2f contient %d accessoires sur %d places", this.getNumero(), this.getPoids(), cpt, this.size());
 		for (int i = 0; i < tab.length; i++) {
 			if (tab[i] != null) {
