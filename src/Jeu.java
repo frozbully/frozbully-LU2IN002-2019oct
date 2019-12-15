@@ -12,11 +12,22 @@ public class Jeu {
 		System.out.println("\nQuestion 9 :");
 		Creature c = new Creature();
 		c.courir();
+		c.ajouter(s1);
 		c.ajouter(new Pomme());
 		c.ajouter(new Pomme());
 		c.ajouter(new Pomme());
 		c.courir();
-		c.manger();
+		c.mangerOld();
+		c.mangerOld();
+		c.mangerOld();
+		c.courir();
+		
+		//Manger amelioree
+		System.out.println("\nManger amelioree :");
+		c = new Creature();
+		c.courir();
+		c.ajouter(s1);
+		c.courir();
 		c.manger();
 		c.manger();
 		c.courir();

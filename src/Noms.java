@@ -1,6 +1,6 @@
 
 public class Noms {
-	private static String[] tabNoms = {"Atchoum", "Dormeur", "Grincheux", "Joyeux", "Prof", "Simplet", "Teo", "Timide"};
+	private static String[] tabNoms = {"Atchoum", "Dormeur", "Grincheux", "Joyeux", "Prof", "Simplet", "Teo", "Tekset", "Timide"};
 	private static int n = 0;
 	private static int nb = 0;
 	

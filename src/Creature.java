@@ -30,17 +30,37 @@ public class Creature extends Personnage {
 		this.addPoids(m.getPoids());
 	}
 	
-	public void manger() {//TODO pour aller plus loin la methode cherche aussi le contenu des sac dans leSac
+	public void mangerOld() {
+		Acc a;
 		for (int i = 0; i < leSac.size(); i++) {
-			Acc a = leSac.obtenir(i);
+			a = leSac.obtenir(i);
 			if (a instanceof Mangeable) {
 				manger((Mangeable) a);
 				return;
+			}
+			leSac.ajouter(a);	
+		}
+	}
+	//fonction manger amelioree
+	public void manger() {
+		mangerRec(leSac);
+	}
+	private void mangerRec(Sac s) {
+		Acc a;
+		for (int i = 0; i < s.size(); i++) {
+			a = s.obtenir(i);
+			if (a instanceof Mangeable) {
+				manger((Mangeable) a);
+				return;
+			}
+			s.ajouter(a);
+			if (a instanceof Sac) {
+				mangerRec((Sac)a);
 			}
 		}
 	}
 	
 	public void courir() {
-		System.out.println(String.format("%s court a vitesse %.2f km/h avec %s", this.toString(), this.getVitesse(), leSac.toString() ));
+		System.out.println(String.format("%s %.1f kg court a vitesse %.2f km/h avec %s", this.getNom(), this.getPoids(), this.getVitesse(), leSac.toString() ));
 	}
 }

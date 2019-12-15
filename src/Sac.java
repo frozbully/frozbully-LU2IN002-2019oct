@@ -32,14 +32,16 @@ public class Sac extends Acc {
 	
 	//Methods
 	public void ajouter(Acc a) {
-		for (int i = 0; i < tab.length; i++) {
-			if (tab[i] == null) {
-				tab[i] = a;
-				cpt++;
-			return;
+		if (a != null) {
+			for (int i = 0; i < tab.length; i++) {
+				if (tab[i] == null) {
+					tab[i] = a;
+					cpt++;
+				return;
+				}
 			}
+			System.out.println("Pas de place");
 		}
-		System.out.println("Pas de place");
 	}
 	
 	public Acc obtenir(int i) {
@@ -54,7 +56,7 @@ public class Sac extends Acc {
 	
 	@Override
 	public String toString() {
-		String res = String.format("sac No %d %.2f contient %d accessoires sur %d places", this.getNumero(), this.getPoids(), cpt, this.size());
+		String res = String.format("sac No %d %.2fkg contient %d accessoires sur %d places", this.getNumero(), this.getPoids(), cpt, this.size());
 		for (int i = 0; i < tab.length; i++) {
 			if (tab[i] != null) {
 				res += "\n\t" + tab[i].toString();

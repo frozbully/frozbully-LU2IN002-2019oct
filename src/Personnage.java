@@ -17,6 +17,9 @@ public abstract class Personnage {
 	protected double getPoids() {
 		return poids;
 	}
+	protected String getNom() {
+		return nom;
+	}
 	
 	//Methods
 	protected void addPoids(double p) {
