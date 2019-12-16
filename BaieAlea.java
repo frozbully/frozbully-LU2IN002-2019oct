@@ -3,7 +3,8 @@ public class BaieAlea extends Acc implements Mangeable {
 	
 	public BaieAlea() {
 		super("baiealea");
-		alea = Math.random()*20;
+		Random rand = new Random(); 
+		int alea = rand.nextInt(21);
 	}
 	
 	//Getters
@@ -16,7 +17,7 @@ public class BaieAlea extends Acc implements Mangeable {
 			return 2;
 		}
 		else{
-			return  15;
+			return 15;
 		}
 		
 	}
