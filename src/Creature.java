@@ -10,11 +10,11 @@ public class Creature extends Personnage {
 	
 	//Getters
 	public double getVitesse() {
-		double poids = this.getPoids()/4.0 - leSac.getPoids() ;
-		if (poids < 0) {
+		double vitesse = this.getPoids()/4.0 - leSac.getPoids() ;
+		if (vitesse < 0) {
 			return 0;
 		}
-		return poids;
+		return vitesse;
 	}
 	
 	//Methods
