@@ -3,10 +3,14 @@ import java.util.ArrayList;
 public class Avatar extends Personnage {
 	private ArrayList<Creature> listeAmis;
 	private ArrayList<Acc> listeAcc;
-	
+	private Monde monde;
 	//Constructors
-	public Avatar(String nom, double poids) {
+	public Avatar(String nom, double poids, Monde monde) {
 		super(nom, poids);
+		listeAmis = new ArrayList<Creature>();
+		listeAcc = new ArrayList<Acc>();
+		monde.ajouterItem(this);
+		this.monde = monde;
 	}
 	
 	//Methods
@@ -101,6 +105,45 @@ public class Avatar extends Personnage {
 		return somme;
 	}
 	
+	public void ramasser(Acc a) {
+		if (a!=null) {
+			monde.supprimerItem(a);
+			listeAcc.add(a);
+			System.out.println(this.getNom() + " ramasse " + a.getNom());
+		}
+	}
+	
+	public void rencontrerVoisins() {
+		ArrayList<Item> voisins = monde.getVoisins(this);
+		Item it;
+		for (int i = 0; i < voisins.size(); i++) {
+			it = voisins.get(i);
+			if (it instanceof Acc) {
+				ramasser((Acc)it);
+			}else if (it instanceof Creature) {
+				rencontrer((Creature) it);
+			}else if (it instanceof Avatar) {
+				System.out.println(this.getNom() + " salue " + it.getNom());
+			}
+		}
+	}
+	
+	public void seDeplacer() {
+		int x = -1;
+		int y = -1;
+		System.out.println("### Deplacement de "+getNom()+" ###");
+		while (x < 0 || x > monde.getTaille()) {
+			System.out.println("Entrer une abscisse entre [0,"+(monde.getTaille()-1)+"] :");
+			x = Console.in.nextInt();
+		}
+		while (y < 0 || y > monde.getTaille()) {
+			System.out.println("Entrer une ordonnee entre [0,"+(monde.getTaille()-1)+"] :");
+			y = Console.in.nextInt();
+		}
+		System.out.println("Deplacement de "+this.getNom()+" de ("+this.getX()+","+this.getY()+") vers ("+x+","+y+")");
+		this.setX(x);
+		this.setY(y);
+	}
 	
 	public String toString() {
 		return String.format("%s %.1f kg %d ami(s) %d accessoire(s)", this.getNom(), this.getPoids(), listeAmis.size(), listeAcc.size()); 

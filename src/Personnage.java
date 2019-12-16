@@ -1,11 +1,10 @@
 
-public abstract class Personnage {
-	private String nom;
+public abstract class Personnage extends Item {
 	private double poids;
 	
 	//Constructors
 	public Personnage(String nom, double poids) {
-		this.nom = nom;
+		super(nom);
 		this.poids = poids;
 	}
 	
@@ -17,9 +16,6 @@ public abstract class Personnage {
 	protected double getPoids() {
 		return poids;
 	}
-	protected String getNom() {
-		return nom;
-	}
 	
 	//Methods
 	protected void addPoids(double p) {
@@ -30,7 +26,7 @@ public abstract class Personnage {
 	
 	@Override
 	public String toString() {
-		return String.format("%s %.1f kg", nom, poids);
+		return String.format("%s %.1f kg", this.getNom(), poids);
 	}
 	
 }

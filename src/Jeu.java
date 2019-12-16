@@ -31,5 +31,21 @@ public class Jeu {
 		c.manger();
 		c.manger();
 		c.courir();
+		
+		//Q13
+		System.out.println("\nQuestion 13 :");
+		Monde world = new Monde(5);
+		world.ajouterItem(c);
+		world.ajouterItem(new Creature());
+		world.ajouterItem(new Creature());
+		world.ajouterItem(new Pomme());
+		world.ajouterItem(new Pomme());
+		world.ajouterItem(new Pomme());
+		Avatar faraan = new Avatar("faraan", 50.0, world);
+		world.afficher();
+		faraan.seDeplacer();
+		world.afficher();
+		
+		Console.in.close();//Do not remove this line
 	}
 }

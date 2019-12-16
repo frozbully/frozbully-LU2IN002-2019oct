@@ -1,12 +1,11 @@
 
-public abstract class Acc {
+public abstract class Acc extends Item {
 	private static int cpt = 0;
 	private int numero;
-	private String categorie;
 	
 	//Constructors
 	public Acc(String categorie) {
-		this.categorie = categorie;
+		super(categorie);
 		cpt++;
 		numero = cpt;
 	}
@@ -20,6 +19,6 @@ public abstract class Acc {
 	//Methods	
 	@Override
 	public String toString() {
-		return String.format("%s No %d %.2f", categorie, numero, this.getPoids());
+		return String.format("%s No %d %.2f", this.getNom(), numero, this.getPoids());
 	}
 }
