@@ -1,3 +1,5 @@
+import java.awt.*;
+import javax.swing.*;
 
 public abstract class Item {
 	private final String nom;
@@ -13,5 +15,9 @@ public abstract class Item {
 	public int distance(Item item) {//distance de Manhattan
 	return Math.abs(x-item.x)+Math.abs(y-item.y);
 	}
-
+	public void dessiner (Graphics g , Monde m) {
+		int tc=m.getTailleCase();
+		g.setColor(new Color(0 ,0 ,255));//couleur courante devient bleu
+		g.fillRect(getX()*tc, getY()*tc, tc, tc);//carré plein
+	}
 }

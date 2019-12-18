@@ -45,7 +45,7 @@ public class Creature extends Personnage {
 	public void manger() {
 		mangerRec(leSac);
 	}
-	private void mangerRec(Sac s) {
+	protected void mangerRec(Sac s) {
 		Acc a;
 		for (int i = 0; i < s.size(); i++) {
 			a = s.obtenir(i);
@@ -58,6 +58,9 @@ public class Creature extends Personnage {
 				mangerRec((Sac)a);
 			}
 		}
+	}
+	protected Sac getSac() {
+		return leSac;
 	}
 	
 	public void courir() {

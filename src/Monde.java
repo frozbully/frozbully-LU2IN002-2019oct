@@ -1,17 +1,24 @@
 import java.util.ArrayList;
+import java.awt.*;
+import javax.swing.*;
 
-public class Monde {
+public class Monde extends JPanel {
 	private ArrayList<Item> listeItems;
 	private int taille;
-	
+	private int tailleCase;
 	//Constructor
-	public Monde(int taille) {
+	public Monde(int taille, int tailleCase) {
+		setPreferredSize(new Dimension(taille*tailleCase, taille*tailleCase));
+		this.tailleCase = tailleCase;
 		this.taille = taille;
 		listeItems = new ArrayList<Item>();
 	}
 	//Getters
 	public int getTaille() {
 		return taille;
+	}
+	public int getTailleCase() {
+		return tailleCase;
 	}
 	
 	//Methods
@@ -88,6 +95,15 @@ public class Monde {
 			}
 		}
 		System.out.print("\n");
+	}
+	
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g); //redessine le panneau
+		for (Item itemVoisin : listeItems) {
+			if (itemVoisin != null) {
+				itemVoisin.dessiner(g,this);
+			}
+		}
 	}
 	
 }
