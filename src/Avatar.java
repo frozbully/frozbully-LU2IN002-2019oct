@@ -1,16 +1,20 @@
+import java.awt.Color;
+import java.awt.Graphics;
 import java.util.ArrayList;
 
 public class Avatar extends Personnage {
 	private ArrayList<Creature> listeAmis;
 	private ArrayList<Acc> listeAcc;
 	private Monde monde;
+	private Color color;
 	//Constructors
-	public Avatar(String nom, double poids, Monde monde) {
+	public Avatar(String nom, double poids, Monde monde, Color color) {
 		super(nom, poids);
 		listeAmis = new ArrayList<Creature>();
 		listeAcc = new ArrayList<Acc>();
 		monde.ajouterItem(this);
 		this.monde = monde;
+		this.color = color;
 	}
 	
 	//Methods
@@ -149,4 +153,9 @@ public class Avatar extends Personnage {
 		return String.format("%s %.1f kg %d ami(s) %d accessoire(s)", this.getNom(), this.getPoids(), listeAmis.size(), listeAcc.size()); 
 	}
 	
+	public void dessiner (Graphics g , Monde m) {
+		int tc=m.getTailleCase();
+		g.setColor(color);//couleur courante devient bleu
+		g.fillRect(getX()*tc, getY()*tc, tc, tc);//carré plein
+	}	
 }

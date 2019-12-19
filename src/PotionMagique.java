@@ -20,7 +20,7 @@ public class PotionMagique extends Acc implements Mangeable {
 	//Methods
 	@Override
 	public String toString() {
-		return String.format("potion No %d %.2fkg force :%.2f", this.getNumero(), this.getPoids()/50, force);
+		return String.format("potion No %d %.2fkg", this.getNumero(), this.getPoids());
 	}
 	
 	@Override

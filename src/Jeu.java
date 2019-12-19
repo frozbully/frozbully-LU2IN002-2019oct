@@ -1,5 +1,9 @@
+import java.awt.*;
+import javax.swing.*;
 
 public class Jeu {
+	private static final int TAILLE_CASE=30;
+	private static final int NB_CASES=20;
 	private Monde monde;
 	private Avatar j1;
 	private Avatar j2;
@@ -39,15 +43,18 @@ public class Jeu {
 		}
 	}
 	
-	public void start(int nbCreatures, int nbAliments) {
+	public void start(int nbCreatures, int nbAliments) throws InterruptedException {
 		init(nbCreatures,nbAliments);
+		monde.repaint(); //Redessine le graphisme
 		for (int i = 0; i < 5; i++) {
-			monde.afficher();
+			Thread.sleep(1000); // Ralenti l'affichage
 			j1.seDeplacer();
 			j1.rencontrerVoisins();
-			monde.afficher();
+			monde.repaint(); //Redessine le graphisme
+			Thread.sleep(1000); // Ralenti l'affichage
 			j2.seDeplacer();
 			j2.rencontrerVoisins();
+			monde.repaint(); //Redessine le graphisme
 		}
 		double scoreJ1 = j1.course();
 		double scoreJ2 = j2.course();
@@ -60,9 +67,19 @@ public class Jeu {
 		}
 	}
 	
-	public static void main(String[] args) {
-		Monde monde = new Monde(5,5);
-		new Jeu(monde,new Avatar("Faraan",50.0,monde),new Avatar("Loann",60.0,monde)).start(3,5);
+	public static void main(String[] args) throws InterruptedException {
+		//Creation denetre graphique et ses caracteristiques
+		JFrame f = new JFrame();
+		f.setLocationRelativeTo(null);
+		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		//Creation du monde (qui est un pqneau)
+		Monde m = new Monde(NB_CASES,TAILLE_CASE);
+		f.setContentPane(m); //Ajout du monde a la fenetre
+		f.pack(); // Adaptation de la fenetre au panneau
+		f.setVisible(true);
+		
+		new Jeu(m,new Avatar("Faraan",50.0,m,new Color(180,0,180)),new Avatar("Loann",60.0,m,new Color(0,255,0))).start(3,5);
 		Console.in.close();//Do not remove this line
 	}
 	/*public static void main(String[] args) {
