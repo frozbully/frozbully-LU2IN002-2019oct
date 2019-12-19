@@ -1,3 +1,5 @@
+import java.awt.Color;
+import java.awt.Graphics;
 
 public class Creature extends Personnage {
 	private Sac leSac;
@@ -65,5 +67,12 @@ public class Creature extends Personnage {
 	
 	public void courir() {
 		System.out.println(String.format("%s %.1f kg court a vitesse %.2f km/h avec %s", this.getNom(), this.getPoids(), this.getVitesse(), leSac.toString() ));
+	}
+	
+	@Override
+	public void dessiner (Graphics g , Monde m) {
+		int tc=m.getTailleCase();
+		g.setColor(new Color(125 ,155 ,255));//couleur courante devient bleu
+		g.fillRect(getX()*tc, getY()*tc, tc, tc);//carré plein
 	}
 }

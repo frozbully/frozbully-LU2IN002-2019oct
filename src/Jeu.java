@@ -79,7 +79,7 @@ public class Jeu {
 		f.pack(); // Adaptation de la fenetre au panneau
 		f.setVisible(true);
 		
-		new Jeu(m,new Avatar("Faraan",50.0,m,new Color(180,0,180)),new Avatar("Loann",60.0,m,new Color(0,255,0))).start(3,5);
+		new Jeu(m,new Avatar("Faraan",50.0,m,new Color(180,0,180)),new Avatar("Loann",60.0,m,new Color(0,255,0))).start(5,10);
 		Console.in.close();//Do not remove this line
 	}
 	/*public static void main(String[] args) {
