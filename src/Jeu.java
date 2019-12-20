@@ -73,7 +73,7 @@ public class Jeu {
 		f.setLocationRelativeTo(null);
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		//Creation du monde (qui est un pqneau)
+		//Creation du monde (qui est un paneau)
 		Monde m = new Monde(NB_CASES,TAILLE_CASE);
 		f.setContentPane(m); //Ajout du monde a la fenetre
 		f.pack(); // Adaptation de la fenetre au panneau
@@ -128,5 +128,63 @@ public class Jeu {
 	faraan.seDeplacer();
 	world.afficher();
 	
-	}*/
+	}
+	//Q18
+	
+	Deuxieme Niveau :
+	
+	public abstract class Trap extends Item {
+	private static int cpt = 0;
+	private int numero;
+	
+	//Constructors
+	public Trap(String categorie) {
+		super(categorie);
+		cpt++;
+		numero = cpt;
+	}
+	//Getters
+	
+	public int getNumero() {
+		return numero;
+	}
+	
+	//Methods
+	public abstract void effet(Avatar avatar);
+	public String toString() {
+		return String.format("%s No %d %.2f", this.getNom(), numero);
+	}
+}
+	Troisième niveau : 
+	
+	import java.awt.Color;
+	import java.awt.Graphics;
+
+public class VideSac extends Trap {
+	
+	public VideSac() {
+		super("videsac");
+	}
+	
+	//Methods
+	
+	public String toString() {
+		return String.format("videsac No %d ", this.getNumero());
+	}
+	
+	public void effet(Avatar avatar){ //vide le sac de celui qui tombe dessus
+		int i=1;
+		while((avatar.getArrayListAcc()).size()!=0){
+			(avatar.getArrayListAcc()).remove(i);
+		}
+	}
+		
+	public void dessiner (Graphics g , Monde m) {
+		int tc=m.getTailleCase();
+		g.setColor(new color(256,256,256));//couleur est blanche pour camoufler le trap
+		g.fillRect(getX()*tc, getY()*tc, tc, tc);//carré plein
+	}
+	
+}
+*/
 }
