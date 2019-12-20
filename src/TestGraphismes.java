@@ -10,13 +10,13 @@ public class TestGraphismes {
 		f.setLocationRelativeTo(null);
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		//Creation du monde (qui est un pqneau)
+		//Creation du monde (qui est un paneau)
 		Monde m = new Monde(NB_CASES,TAILLE_CASE);
 		f.setContentPane(m); //Ajout du monde a la fenetre
 		f.pack(); // Adaptation de la fenetre au panneau
 		f.setVisible(true);
 		
-		Avatar jake = new Avatar("Jake", 79.5, m); // Ajoute Jake dans le monde
+		Avatar jake = new Avatar("Jake", 79.5, m, blue); // Ajoute Jake dans le monde
 		for (int i=0; i<10; i++) {
 			Thread.sleep(1000); // Ralenti l'affichage
 			jake.seDeplacer();

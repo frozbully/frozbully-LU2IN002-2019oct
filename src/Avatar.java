@@ -16,6 +16,11 @@ public class Avatar extends Personnage {
 		this.monde = monde;
 		this.color = color;
 	}
+	//Getters
+	
+	public ArrayList<Acc> getArrayListAcc(){
+		return listeAcc;
+	}
 	
 	//Methods
 	public boolean estAmi(Creature c) {
