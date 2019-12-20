@@ -8,6 +8,15 @@ public class Avatar extends Personnage {
 	private Monde monde;
 	private Color color;
 	//Constructors
+	public Avatar(String nom, double poids, Monde monde) {
+		super(nom, poids);
+		listeAmis = new ArrayList<Creature>();
+		listeAcc = new ArrayList<Acc>();
+		monde.ajouterItem(this);
+		this.monde = monde;
+		this.color = new Color(0,0,255);
+	}
+
 	public Avatar(String nom, double poids, Monde monde, Color color) {
 		super(nom, poids);
 		listeAmis = new ArrayList<Creature>();
@@ -17,25 +26,25 @@ public class Avatar extends Personnage {
 		this.color = color;
 	}
 	//Getters
-	
+
 	public ArrayList<Acc> getArrayListAcc(){
 		return listeAcc;
 	}
-	
+
 	//Methods
 	public boolean estAmi(Creature c) {
 		return listeAmis.contains(c);
 	}
-	
+
 	public void devenirAmi(Creature c) {
 		if (this.estAmi(c)) {
 			System.out.println(c.getNom()+ " est deja ami avec " +this.getNom());
 		}else {
 			listeAmis.add(c);
-			System.out.println(c.getNom()+ " deviens ami avec " +this.getNom());			
+			System.out.println(c.getNom()+ " deviens ami avec " +this.getNom());
 		}
 	}
-	
+
 	public void perdreAmi(Creature c) {
 		if (listeAmis.remove(c)) {
 			System.out.println(c.getNom()+ " n'est plus ami avec " +this.getNom());
@@ -43,7 +52,7 @@ public class Avatar extends Personnage {
 			System.out.println(c.getNom()+ " ne fais pas partie des amis de " +this.getNom());
 		}
 	}
-	
+
 	public void rencontrer(Creature c) {
 		if (listeAcc.size() == 0) {
 			this.perdreAmi(c);
@@ -55,7 +64,7 @@ public class Avatar extends Personnage {
 			c.ajouter(gift);
 		}
 	}
-	
+
 	public double course() {
 		double distance = 0;
 		Creature c;
@@ -67,7 +76,7 @@ public class Avatar extends Personnage {
 		}
 		return distance;
 	}
-	
+
 	public Creature getCreaturePlusRapide() {
 		Creature rapide = null;
 		Creature c;
@@ -82,7 +91,7 @@ public class Avatar extends Personnage {
 		}
 		return rapide;
 	}
-	
+
 	public int compterAccMangeable() {
 		int somme = 0;
 		Acc a;
@@ -91,7 +100,7 @@ public class Avatar extends Personnage {
 			if (a instanceof Mangeable) {
 				somme++;
 			}else if (a instanceof Sac) {
-				somme += mangeableDansSac((Sac)a); 
+				somme += mangeableDansSac((Sac)a);
 			}
 		}
 		return somme;
@@ -113,7 +122,7 @@ public class Avatar extends Personnage {
 		}
 		return somme;
 	}
-	
+
 	public void ramasser(Acc a) {
 		if (a!=null) {
 			monde.supprimerItem(a);
@@ -121,7 +130,7 @@ public class Avatar extends Personnage {
 			System.out.println(this.getNom() + " ramasse " + a.getNom());
 		}
 	}
-	
+
 	public void rencontrerVoisins() {
 		ArrayList<Item> voisins = monde.getVoisins(this);
 		Item it;
@@ -136,7 +145,7 @@ public class Avatar extends Personnage {
 			}
 		}
 	}
-	
+
 	public void seDeplacer() {
 		int x = -1;
 		int y = -1;
@@ -153,14 +162,14 @@ public class Avatar extends Personnage {
 		this.setX(x);
 		this.setY(y);
 	}
-	
+
 	public String toString() {
-		return String.format("%s %.1f kg %d ami(s) %d accessoire(s)", this.getNom(), this.getPoids(), listeAmis.size(), listeAcc.size()); 
+		return String.format("%s %.1f kg %d ami(s) %d accessoire(s)", this.getNom(), this.getPoids(), listeAmis.size(), listeAcc.size());
 	}
-	
+
 	public void dessiner (Graphics g , Monde m) {
 		int tc=m.getTailleCase();
 		g.setColor(color);//couleur courante devient bleu
 		g.fillRect(getX()*tc, getY()*tc, tc, tc);//carré plein
-	}	
+	}
 }
